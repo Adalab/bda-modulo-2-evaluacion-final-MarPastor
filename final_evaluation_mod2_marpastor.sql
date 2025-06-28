@@ -36,3 +36,9 @@ FROM actor AS a; -- en la tabla 'actor'
 
 SELECT CONCAT(first_name, ' ', last_name) AS nombre_actores -- selecciona los datos de las columnas nombre y apellidos, y las concatena en una sola columna
 FROM actor;
+
+-- 6. Encuentra el nombre y apellido de los actores que tengan "Gibson" en su apellido
+
+SELECT a.first_name, a.last_name -- selecciona las columnas de nombre y apellidos
+FROM actor AS a -- de la tabla 'actor'
+WHERE a.last_name LIKE '%Gibson%'; -- filtra la consulta con nombre y apellido de actores que contengan 'Gibson' en la columna 'last_name'
