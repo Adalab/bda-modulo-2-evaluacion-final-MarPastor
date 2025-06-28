@@ -5,7 +5,8 @@
 -- Usando la BBDD Sakila
 USE Sakila;
 
---  1. Selecciona todos los nombres de las películas sin que aparezcan duplicados
+-- 
+1. Selecciona todos los nombres de las películas sin que aparezcan duplicados
 
 SELECT DISTINCT title -- selecciona la columna con el nombre de las peliculas una vez con 'distinct'
 FROM film; -- de la tabla 'film'
@@ -22,3 +23,9 @@ SELECT title, description -- selecciona las columnas de nombre y descripción
 FROM film -- de la tabla 'film' donde estan las columnas
 WHERE description LIKE '%amazing%'; -- filtra las descripciones que contiene la palabra 'amazing' y lo que rodee la palabra
 
+-- 4. Encuentra el título de todas las películas que tengan una duración mayor a 120 minutos
+
+SELECT title, length -- seleccion el titulo y la duracion para comprobar resultados
+FROM film -- de la tabla film
+WHERE length > 120 -- filtra las peliculas que tengan una duracion mayor de 120
+ORDER BY length;
