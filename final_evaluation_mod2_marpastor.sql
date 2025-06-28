@@ -15,3 +15,10 @@ FROM film; -- de la tabla 'film'
 SELECT f.title, f.rating -- seleccina las columnas con el nombre y la clasificación de las películas
 FROM film AS f -- llama la tabla que contiene las columnas
 WHERE rating = 'PG-13'; -- filtra la información requerida en el ejercicio
+
+-- 3. Encuentra el título y la descripción de todas las películas que contengan la palabra "amazing" en su descripción
+
+SELECT title, description -- selecciona las columnas de nombre y descripción
+FROM film -- de la tabla 'film' donde estan las columnas
+WHERE description LIKE '%amazing%'; -- filtra las descripciones que contiene la palabra 'amazing' y lo que rodee la palabra
+
