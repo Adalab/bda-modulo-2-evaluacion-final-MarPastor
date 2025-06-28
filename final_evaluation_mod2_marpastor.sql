@@ -52,3 +52,10 @@ SELECT a.first_name, a.actor_id -- selecciona la columna del nombre de los actor
 FROM actor AS a -- de la tabla 'actor' con alias 'a'
 WHERE a.actor_id BETWEEN 10 AND 20 -- filtra los id de los actores entre 10 y 20, incluyendolos
 ORDER BY a.actor_id; -- ordena de mayor a menor por id
+
+--  8. Encuentra el título de las películas en la tabla film que no sean ni "R" ni "PG-13" en cuanto a su clasificación
+
+SELECT f.title, f.rating -- selecciona titulo de la columa 'title' y la clasificación de 'rating' para verificación
+FROM film AS f -- de la tabla film con alias 'f'
+WHERE f.rating NOT IN ('R', 'PG-13') -- filtra la consulta para que no muestre peliculas con clasificación 'R' o "PG-13'
+ORDER BY f.rating; -- ordena el rating para mejor visibilización
