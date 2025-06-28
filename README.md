@@ -8,7 +8,7 @@ Ejercicio para demostrar comprensión y habilidades con MySQL, realizando consul
 
 - MySQL Workbench
 
-`---`
+---
 
 ## Instrucciones de uso
 
@@ -18,15 +18,20 @@ Ejercicio para demostrar comprensión y habilidades con MySQL, realizando consul
 4. Selecciona el primer comando (USE) del script que se encuentra en el area de trabajo y click al icono del rayo para ejecutarlo.
 5. Seleccionar cada cóodigo de cada sección de los ejercicios para comprobar y visualizar los resultados de cada consulta.
 
+---
+
 ## Autora
 
 - Mar Pastor
+
+---
 
 ## Estado del proyecto
 
 En desarrollo
 
+---
+
 ## Capturas de pantalla (opcional)
 
 Ir generando las capturas de los resultados de cada ejercicio (en proceso)
-
