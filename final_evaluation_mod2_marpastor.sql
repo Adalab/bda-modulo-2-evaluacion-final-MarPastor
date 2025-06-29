@@ -65,3 +65,21 @@ ORDER BY f.rating; -- ordena el rating para mejor visibilización
 SELECT f.rating, COUNT(DISTINCT f.title) AS recuento -- selecciona la clasificación de las peliculas y cuentas las peliculas dentro de esa categoria, guarda los datos en una columna 'recuento'
 FROM film AS f -- de la tabla 'film' con alias 'f'
 GROUP BY f.rating; 
+
+-- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido junto con la cantidad de películas alquiladas
+-- PENDIENTE!
+
+SELECT r.customer_id, COUNT(r.rental_id) AS peliculas_alquiladas
+FROM rental AS r
+GROUP BY r.customer_id;
+
+--  11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
+-- COMO REVISAR RESULTADO
+
+SELECT c.name, COUNT(r.rental_id) AS recuento_alquiladas
+FROM rental AS r
+INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
+INNER JOIN film_category AS fc ON i.film_id = fc.film_id
+INNER JOIN category AS c ON fc.category_id = c.category_id
+GROUP BY c.name; 
+
