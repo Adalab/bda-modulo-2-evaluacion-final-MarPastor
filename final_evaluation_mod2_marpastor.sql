@@ -108,7 +108,14 @@ WHERE f.description LIKE '%dog%' OR f.description LIKE '%cat%'; -- usando patron
 
 --  15. Encuentra el título de todas las películas que fueron lanzadas entre el año 2005 y 2010
 
-SELECT f.title, f.release_year
-FROM film AS f
-WHERE f.release_year BETWEEN 2005 AND 2010;
+SELECT f.title, f.release_year -- selecciona el titulo y el año de estreno como comprobación
+FROM film AS f -- de la tabla 'film'
+WHERE f.release_year BETWEEN 2005 AND 2010; -- agrega un filtro a la consulta enre los año 2005 y 2010
 
+-- 16. Encuentra el título de todas las películas que son de la misma categoría que "Family"
+
+SELECT f.title, c.name -- selecciona el título de todas las películas y categoría como comprobación
+FROM film AS f -- de la tabla 'film'
+INNER JOIN film_category AS fc ON f.film_id = fc.film_id -- unida a la tabla 'film_category' por el 'film_id'
+INNER JOIN category AS c ON fc.category_id = c.category_id -- unida a su vez a la tabla 'category' por el 'category_id'
+WHERE c.name = 'Family'; -- aplica un filtro a la consulta las películas de la categoría "Family"
