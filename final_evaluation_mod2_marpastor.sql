@@ -106,5 +106,9 @@ SELECT f.title, f.description -- selecciona el titulo de la pelicual y la descri
 FROM film AS f -- de la tabla 'film'
 WHERE f.description LIKE '%dog%' OR f.description LIKE '%cat%'; -- usando patrones que incluyan las palabras 'dog' o 'cat' y muestre resultados de ambos
 
+--  15. Encuentra el título de todas las películas que fueron lanzadas entre el año 2005 y 2010
 
+SELECT f.title, f.release_year
+FROM film AS f
+WHERE f.release_year BETWEEN 2005 AND 2010;
 
