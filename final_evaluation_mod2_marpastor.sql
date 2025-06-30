@@ -64,7 +64,7 @@ ORDER BY f.rating; -- ordena el rating para mejor visibilización
 
 SELECT f.rating, COUNT(DISTINCT f.title) AS recuento -- selecciona la clasificación de las peliculas y cuentas las peliculas dentro de esa categoria, guarda los datos en una columna 'recuento'
 FROM film AS f -- de la tabla 'film' con alias 'f'
-GROUP BY f.rating; 
+GROUP BY f.rating; -- para que aparezca la lista agrupada por clasificación
 
 -- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido junto con la cantidad de películas alquiladas
 -- PENDIENTE!
@@ -99,4 +99,12 @@ FROM actor AS a
 INNER JOIN film_actor AS fa ON fa.actor_id = a.actor_id
 INNER JOIN film AS f ON f.film_id = fa.film_id
 WHERE f.title = 'Indian Love';
+
+--  14. Muestra el título de todas las películas que contengan la palabra "dog" o "cat" en su descripción
+
+SELECT f.title, f.description -- selecciona el titulo de la pelicual y la descripción como comprobación
+FROM film AS f -- de la tabla 'film'
+WHERE f.description LIKE '%dog%' OR f.description LIKE '%cat%'; -- usando patrones que incluyan las palabras 'dog' o 'cat' y muestre resultados de ambos
+
+
 
