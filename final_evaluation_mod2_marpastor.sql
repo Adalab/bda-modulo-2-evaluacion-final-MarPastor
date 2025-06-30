@@ -1,9 +1,13 @@
 -- *********************************************
--- Ejercicio Evaluacion Final MOD2
+-- Evaluacion Final MOD2
 -- *********************************************
 
 -- Usando la BBDD Sakila
 USE Sakila;
+
+-- *********************************************
+-- Ejercicios
+-- *********************************************
 
 -- 1. Selecciona todos los nombres de las películas sin que aparezcan duplicados
 
@@ -122,7 +126,21 @@ WHERE c.name = 'Family'; -- aplica un filtro a la consulta las películas de la 
 
 -- 17. Encuentra el título de todas las películas que son "R" y tienen una duración mayor a 2 horas en la tabla film
 
-SELECT f.title, f.rating, f. length -- selecciona el título de todas las películas, rating 'R' y la duración como comprobación
+SELECT f.title, f.rating, f.length -- selecciona el título de todas las películas, rating 'R' y la duración como comprobación
 FROM film AS f -- de la tabla 'film'
-WHERE f.rating = 'R' AND length > 120 -- filtra la consulta por películas con rating "R" y de duración mayor a 2 horas
+WHERE f.rating = 'R' AND f.length > 120 -- filtra la consulta por películas con rating "R" y de duración mayor a 2 horas
 ORDER BY length; -- ordenada por duración
+
+-- *********************************************
+-- Ejercicio bonus
+-- *********************************************
+
+-- 18. Muestra el nombre y apellido de los actores que aparecen en más de 10 películas
+
+SELECT a.first_name, a.last_name, COUNT(fa.film_id) AS peliculas -- selecciona nombre y apellido de los actores y el conteo de las peliculas en las que aparecen
+FROM film_actor AS fa -- de la tabla 'film_actor'
+INNER JOIN actor AS a ON fa.actor_id = a.actor_id -- unida con la tabla 'actor' para obtener los nombres y apellidos donde coincidan con el 'actor_id'
+GROUP BY fa.actor_id -- agrupa el conteo de peliculas por 'actor_id'
+HAVING peliculas > 10; -- filtra la consulta para que muestre los actores que aparecen en más de 10 películas
+
+
