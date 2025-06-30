@@ -119,3 +119,10 @@ FROM film AS f -- de la tabla 'film'
 INNER JOIN film_category AS fc ON f.film_id = fc.film_id -- unida a la tabla 'film_category' por el 'film_id'
 INNER JOIN category AS c ON fc.category_id = c.category_id -- unida a su vez a la tabla 'category' por el 'category_id'
 WHERE c.name = 'Family'; -- aplica un filtro a la consulta las películas de la categoría "Family"
+
+-- 17. Encuentra el título de todas las películas que son "R" y tienen una duración mayor a 2 horas en la tabla film
+
+SELECT f.title, f.rating, f. length -- selecciona el título de todas las películas, rating 'R' y la duración como comprobación
+FROM film AS f -- de la tabla 'film'
+WHERE f.rating = 'R' AND length > 120 -- filtra la consulta por películas con rating "R" y de duración mayor a 2 horas
+ORDER BY length; -- ordenada por duración
