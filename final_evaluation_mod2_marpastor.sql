@@ -83,3 +83,4 @@ INNER JOIN film_category AS fc ON i.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name; 
 
+-- 12. Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración
