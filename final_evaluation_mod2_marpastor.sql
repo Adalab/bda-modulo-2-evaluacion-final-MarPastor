@@ -1,5 +1,5 @@
 -- *********************************************
--- Evaluacion Final MOD2
+-- Evaluacion Final MOD2 - Mar Pastor
 -- *********************************************
 
 -- Usando la BBDD Sakila
@@ -143,4 +143,8 @@ INNER JOIN actor AS a ON fa.actor_id = a.actor_id -- unida con la tabla 'actor' 
 GROUP BY fa.actor_id -- agrupa el conteo de peliculas por 'actor_id'
 HAVING peliculas > 10; -- filtra la consulta para que muestre los actores que aparecen en más de 10 películas
 
+-- 19. Hay algún actor o actriz que no aparezca en ninguna película en la tabla film_actor?
 
+SELECT actor_id -- seleccion el id del actor/actriz
+FROM film_actor -- de la tabla 'film_actor'
+WHERE film_id IS NULL; -- verifica si en la columna film_id hay resultados nulos, es decir que no esten en alguna pelicula
