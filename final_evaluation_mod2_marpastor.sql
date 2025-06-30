@@ -90,3 +90,13 @@ FROM film AS f
 INNER JOIN film_category AS fc ON f.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name;
+
+-- 13. Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love"
+-- VERIFICAR RESULTADO, tiene que ser los primeros 3
+
+SELECT a.first_name, a.last_name, f.title
+FROM actor AS a
+INNER JOIN film_actor AS fa ON fa.actor_id = a.actor_id
+INNER JOIN film AS f ON f.film_id = fa.film_id
+WHERE f.title = 'Indian Love';
+
