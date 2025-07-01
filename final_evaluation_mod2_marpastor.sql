@@ -75,6 +75,7 @@ GROUP BY f.rating; -- para que aparezca la lista agrupada por clasificación
 
 SELECT r.customer_id, COUNT(r.rental_id) AS peliculas_alquiladas
 FROM rental AS r
+INNER -- unir la tabla con la de customer para nombre y apellido REVISAR CONSULTA
 GROUP BY r.customer_id;
 
 --  11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
@@ -86,6 +87,8 @@ INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
 INNER JOIN film_category AS fc ON i.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name; 
+
+-- unir una tabla con otra, manualmente
 
 -- 12. Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración
 
@@ -160,3 +163,10 @@ GROUP BY c.name
 HAVING promedio > 120;
 
 --  21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado
+
+SELECT a.first_name, COUNT(DISTINCT fa.actor_id) AS peliculas
+FROM actor AS a
+INNER JOIN film_actor AS fa ON a.actor_id = fa.actor_id
+GROUP BY a.first_name
+HAVING peliculas > 5
+ORDER BY peliculas;
