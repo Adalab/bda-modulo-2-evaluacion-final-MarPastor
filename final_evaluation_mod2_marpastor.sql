@@ -129,7 +129,7 @@ WHERE c.name = 'Family'; -- aplica un filtro a la consulta las películas de la 
 SELECT f.title, f.rating, f.length -- selecciona el título de todas las películas, rating 'R' y la duración como comprobación
 FROM film AS f -- de la tabla 'film'
 WHERE f.rating = 'R' AND f.length > 120 -- filtra la consulta por películas con rating "R" y de duración mayor a 2 horas
-ORDER BY length; -- ordenada por duración
+ORDER BY f.length; -- ordenada por duración
 
 -- *********************************************
 -- Ejercicio bonus
@@ -148,3 +148,15 @@ HAVING peliculas > 10; -- filtra la consulta para que muestre los actores que ap
 SELECT actor_id -- seleccion el id del actor/actriz
 FROM film_actor -- de la tabla 'film_actor'
 WHERE film_id IS NULL; -- verifica si en la columna film_id hay resultados nulos, es decir que no esten en alguna pelicula
+
+--  20. Encuentra las categorías de películas que tienen un promedio de duración superior a 120 minutos 
+-- y muestra el nombre de la categoría junto con el promedio de duración
+
+SELECT c.name, AVG(f.length) AS promedio -- selecciona la categoría y la duración
+FROM film AS f -- de la tabla 'film'
+INNER JOIN film_category AS fc ON f.film_id = fc.film_id
+INNER JOIN category AS c ON fc.category_id = c.category_id
+GROUP BY c.name
+HAVING promedio > 120;
+
+--  21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado
