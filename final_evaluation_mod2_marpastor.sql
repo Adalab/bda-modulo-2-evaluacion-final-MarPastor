@@ -70,16 +70,15 @@ SELECT f.rating, COUNT(DISTINCT f.title) AS recuento -- selecciona la clasificac
 FROM film AS f -- de la tabla 'film' con alias 'f'
 GROUP BY f.rating; -- para que aparezca la lista agrupada por clasificación
 
--- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido junto con la cantidad de películas alquiladas
--- PENDIENTE!
+-- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido 
+-- junto con la cantidad de películas alquiladas
 
-SELECT r.customer_id, COUNT(r.rental_id) AS peliculas_alquiladas
+SELECT r.customer_id, c.first_name, c.last_name, COUNT(DISTINCT r.rental_id) AS peliculas_alquiladas
 FROM rental AS r
-INNER -- unir la tabla con la de customer para nombre y apellido REVISAR CONSULTA
+INNER JOIN customer AS c ON r.customer_id = c.customer_id
 GROUP BY r.customer_id;
 
 --  11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
--- COMO REVISAR RESULTADO
 
 SELECT c.name, COUNT(r.rental_id) AS recuento_alquiladas
 FROM rental AS r
@@ -87,8 +86,6 @@ INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
 INNER JOIN film_category AS fc ON i.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name; 
-
--- unir una tabla con otra, manualmente
 
 -- 12. Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración
 
@@ -99,7 +96,6 @@ INNER JOIN category AS c ON fc.category_id = c.category_id
 GROUP BY c.name;
 
 -- 13. Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love"
--- VERIFICAR RESULTADO, tiene que ser los primeros 3
 
 SELECT a.first_name, a.last_name, f.title
 FROM actor AS a
