@@ -166,3 +166,31 @@ INNER JOIN film_actor AS fa ON a.actor_id = fa.actor_id
 GROUP BY a.first_name
 HAVING peliculas > 5
 ORDER BY peliculas;
+
+-- 22. Encuentra el título de todas las películas que fueron alquiladas por más de 5 días
+-- Utiliza unasubconsulta para encontrar los rental_ids con una duración superior a 5 días y luego selecciona las películas correspondientes
+
+-- subconsulta que encuentra los alquileres mayores a 5 días
+
+SELECT r.rental_date, r.return_date, DATEDIFF(r.return_date, r.rental_date) AS dias_alquiladas -- usa el comando 'datediff' para calcular los dias entre fechas
+FROM rental AS r
+HAVING dias_alquiladas > 5; -- filtra los resultados para mostrar los mayores a 5 días
+                  
+-- unir a la consulta principal: REVISAR QUE PONER EN EL 'WHERE'
+                  
+SELECT f.title
+FROM film AS f
+INNER JOIN inventory AS i ON f.film_id = i.film_id
+INNER JOIN rental AS r ON i.inventory_id = r.inventory_id
+WHERE dias_alquiladas > (SELECT f.title, r.rental_date, r.return_date, DATEDIFF(r.return_date, r.rental_date) AS dias_alquiladas
+						FROM rental AS r
+						HAVING dias_alquiladas > 5);
+                  
+-- 23. Encuentra el nombre y apellido de los actores que no han actuado en ninguna película de la categoría "Horror"
+-- Utiliza una subconsulta para encontrar los actores que han actuado en películas de la categoría "Horror" y luego exclúyelos de la lista de actores
+
+
+-- 24. Encuentra el título de las películas que son comedias y tienen una duración mayor a 180 minutos en la tabla film
+ 
+-- 25. Encuentra todos los actores que han actuado juntos en al menos una película
+-- La consulta debe mostrar el nombre y apellido de los actores y el número de películas en las que han actuado juntos
