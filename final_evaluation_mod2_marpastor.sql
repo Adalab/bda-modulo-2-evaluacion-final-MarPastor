@@ -92,11 +92,11 @@ GROUP BY c.name; -- se agrupa con el nombre de la categoría
 
 -- 12. Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración
 
-SELECT c.name, AVG(f.length)
-FROM film AS f
-INNER JOIN film_category AS fc ON f.film_id = fc.film_id
-INNER JOIN category AS c ON fc.category_id = c.category_id
-GROUP BY c.name;
+SELECT c.name, AVG(f.length) -- seleccion el nombre de la clasificación, calculando el promedio de duración de la película
+FROM film AS f -- de la tabla 'film'
+INNER JOIN film_category AS fc ON f.film_id = fc.film_id -- unida a la tabla 'film_category' usando el 'film_id'
+INNER JOIN category AS c ON fc.category_id = c.category_id -- unida a su vez a la tabla 'category' usando el 'category_id'
+GROUP BY c.name; -- agrupando la consulta por el nombre de la clasificación
 
 -- 13. Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love"
 
