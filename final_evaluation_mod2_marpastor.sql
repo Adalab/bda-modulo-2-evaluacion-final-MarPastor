@@ -215,5 +215,13 @@ ORDER BY c.name;
 
 -- 24. Encuentra el título de las películas que son comedias y tienen una duración mayor a 180 minutos en la tabla film
  
+SELECT f.title, c.name, f.length -- selecciona el título de las películas, la categoría y la duración para comprobación
+FROM film AS f -- de la tabla 'film'
+INNER JOIN film_category AS fc USING(film_id) -- unida a la tabla 'film' usando el 'film_id'
+INNER JOIN category AS c USING(category_id) -- unida a la tabla 'category' usando el 'category_id'
+WHERE c.name = 'Comedy' -- filtra los resultados por la categoría comedia
+AND f.length > 180 -- filtra por la duración mayor a 180 minutos
+ORDER BY f.length; -- ordena por duración
+ 
 -- 25. Encuentra todos los actores que han actuado juntos en al menos una película
 -- La consulta debe mostrar el nombre y apellido de los actores y el número de películas en las que han actuado juntos
