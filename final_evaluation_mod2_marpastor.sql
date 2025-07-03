@@ -83,12 +83,12 @@ GROUP BY r.customer_id; -- agrupa la consulta por el 'customer_id'
 
 --  11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
 
-SELECT c.name, COUNT(r.rental_id) AS rented_count 
-FROM rental AS r -- 
-INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
-INNER JOIN film_category AS fc ON i.film_id = fc.film_id
-INNER JOIN category AS c ON fc.category_id = c.category_id
-GROUP BY c.name; 
+SELECT c.name, COUNT(r.rental_id) AS rented_count -- selecciona el nombre de la categoría y el recuento veces que se han alguilado
+FROM rental AS r -- de la tabla 'rental'
+INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id -- unida a la tabla 'inventory' usando el 'inventory_id'
+INNER JOIN film_category AS fc ON i.film_id = fc.film_id -- unida a su vez a la tabla 'film_category' usando el 'film_id'
+INNER JOIN category AS c ON fc.category_id = c.category_id -- unida a su vez a la tabla 'category' usando el 'category_id'
+GROUP BY c.name; -- se agrupa con el nombre de la categoría
 
 -- 12. Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración
 
