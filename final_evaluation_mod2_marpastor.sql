@@ -110,7 +110,7 @@ WHERE f.title = 'Indian Love'; -- usa un filtro en título de la película para 
 
 SELECT f.title, f.description -- selecciona el titulo de la pelicual y la descripción como comprobación
 FROM film AS f -- de la tabla 'film'
-WHERE f.description LIKE '%dog%' OR f.description LIKE '%cat%'; -- usando patrones que incluyan las palabras 'dog' o 'cat' y muestre resultados de ambos
+WHERE f.description LIKE '% dog %' OR f.description LIKE '% cat %'; -- usando patrones que incluyan las palabras 'dog' o 'cat' y muestre resultados de ambos
 
 --  15. Encuentra el título de todas las películas que fueron lanzadas entre el año 2005 y 2010
 
