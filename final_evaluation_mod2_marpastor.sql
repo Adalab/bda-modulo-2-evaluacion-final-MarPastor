@@ -100,11 +100,11 @@ GROUP BY c.name; -- agrupando la consulta por el nombre de la clasificación
 
 -- 13. Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love"
 
-SELECT a.first_name, a.last_name, f.title
-FROM actor AS a
-INNER JOIN film_actor AS fa ON fa.actor_id = a.actor_id
-INNER JOIN film AS f ON f.film_id = fa.film_id
-WHERE f.title = 'Indian Love';
+SELECT a.first_name, a.last_name, f.title -- selecciona el nombre y apellido de actor/actriz, y el nombre de la película 'Indian Love' como comprobación
+FROM actor AS a -- de la tabla 'actor'
+INNER JOIN film_actor AS fa ON fa.actor_id = a.actor_id -- uniendo la tabla 'film_actor' usando el 'actor_id'
+INNER JOIN film AS f ON f.film_id = fa.film_id -- uniendo a su vez la tabla 'film' usando el 'film_id'
+WHERE f.title = 'Indian Love'; -- usa un filtro en título de la película para mostrar solo los que actuaron en 'Indian Love'
 
 --  14. Muestra el título de todas las películas que contengan la palabra "dog" o "cat" en su descripción
 
