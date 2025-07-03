@@ -35,12 +35,15 @@ ORDER BY f.length;
 
 -- 5. Recupera los nombres de todos los actores
 
+-- propuesta_solucion_1
 SELECT a.first_name, a.last_name -- selecciona las columnas del nombre y apellido de los actores
 FROM actor AS a; -- en la tabla 'actor' con alias 'a'
 
+-- propuesta_solucion_2
 SELECT a.first_name -- selecciona la columna del nombre de los actores
 FROM actor AS a; -- en la tabla 'actor' con un alias 'a'
 
+-- propuesta_solucion_3
 SELECT CONCAT(first_name, ' ', last_name) AS actor_name -- selecciona los datos de las columnas nombre y apellidos, y las concatena en una sola columna
 FROM actor;
 
@@ -73,15 +76,15 @@ GROUP BY f.rating; -- para que aparezca la lista agrupada por clasificación
 -- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido 
 -- junto con la cantidad de películas alquiladas
 
-SELECT r.customer_id, c.first_name, c.last_name, COUNT(DISTINCT r.rental_id) AS rented_movies
-FROM rental AS r
-INNER JOIN customer AS c ON r.customer_id = c.customer_id
-GROUP BY r.customer_id;
+SELECT r.customer_id, c.first_name, c.last_name, COUNT(DISTINCT r.rental_id) AS rented_movies -- selecciona el ID, nombre completo del cliente y conteo de películas alquiladas
+FROM rental AS r -- de la tabla 'film'
+INNER JOIN customer AS c ON r.customer_id = c.customer_id -- uniendo la tabla 'customers' usando el 'customer_id'
+GROUP BY r.customer_id; -- agrupa la consulta por el 'customer_id'
 
 --  11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
 
-SELECT c.name, COUNT(r.rental_id) AS rented_count
-FROM rental AS r
+SELECT c.name, COUNT(r.rental_id) AS rented_count 
+FROM rental AS r -- 
 INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
 INNER JOIN film_category AS fc ON i.film_id = fc.film_id
 INNER JOIN category AS c ON fc.category_id = c.category_id
