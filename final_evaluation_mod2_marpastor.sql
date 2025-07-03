@@ -184,7 +184,7 @@ HAVING days_rented > 5; -- filtra los resultados para mostrar los mayores a 5 d�
 
 SELECT r.rental_id
 FROM rental AS r
-WHERE DATEDIFF(r.return_date, r.rental_date) > 5;
+WHERE DATEDIFF(r.return_date, r.rental_date) > 5; -- usar el DATEDIFF resultado en el filtro como condición
                   
 -- unir a la consulta principal (Encuentra el título de todas las películas que fueron alquiladas por más de 5 días)
 
