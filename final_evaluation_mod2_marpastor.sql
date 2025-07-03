@@ -143,7 +143,8 @@ SELECT a.first_name, a.last_name, COUNT(fa.film_id) AS movies_count -- seleccion
 FROM film_actor AS fa -- de la tabla 'film_actor'
 INNER JOIN actor AS a ON fa.actor_id = a.actor_id -- unida con la tabla 'actor' para obtener los nombres y apellidos donde coincidan con el 'actor_id'
 GROUP BY fa.actor_id -- agrupa el conteo de peliculas por 'actor_id'
-HAVING peliculas > 10; -- filtra la consulta para que muestre los actores que aparecen en más de 10 películas
+HAVING movies_count > 10 -- filtra la consulta para que muestre los actores que aparecen en más de 10 películas
+ORDER BY movies_count; -- ordena por la cantidad de películas de menor a mayor
 
 -- 19. Hay algún actor o actriz que no aparezca en ninguna película en la tabla film_actor?
 
