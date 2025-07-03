@@ -164,12 +164,12 @@ HAVING average_duration > 120; -- filtra la consulta que muestre los resultados 
 
 --  21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado
 
-SELECT a.first_name, COUNT(DISTINCT fa.actor_id) AS movies
-FROM actor AS a
-INNER JOIN film_actor AS fa ON a.actor_id = fa.actor_id
-GROUP BY a.first_name
-HAVING movies > 5
-ORDER BY movies;
+SELECT a.first_name, COUNT(DISTINCT fa.film_id) AS movies -- seleccion el nombre de actor/actriz y el conteo de películas en las que han actuado
+FROM actor AS a -- de la tabla 'actor'
+INNER JOIN film_actor AS fa ON a.actor_id = fa.actor_id -- uniendo con la tabla 'film_actor' usando el 'actor_id'
+GROUP BY a.first_name -- agrupar la consulta por el nombre de actor/actriz
+HAVING movies > 5 -- filtra la consulta que muestre resultados en el conteo mayores a 5
+ORDER BY movies; -- ordenar por películas para mejor comprobación
 
 -- 22. Encuentra el título de todas las películas que fueron alquiladas por más de 5 días
 -- Utiliza unasubconsulta para encontrar los rental_ids con una duración superior a 5 días y luego selecciona las películas correspondientes
