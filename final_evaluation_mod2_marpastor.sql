@@ -176,20 +176,29 @@ ORDER BY movies; -- ordenar por películas para mejor comprobación
 
 -- subconsulta que encuentra los alquileres mayores a 5 días
 
-SELECT r.rental_date, r.return_date, DATEDIFF(r.return_date, r.rental_date) AS days_rented -- usa el comando 'datediff' para calcular los dias entre fechas
+SELECT r.rental_id, r.rental_date, r.return_date, DATEDIFF(r.return_date, r.rental_date) AS days_rented -- usa el comando 'datediff' para calcular los dias entre fechas
 FROM rental AS r
 HAVING days_rented > 5; -- filtra los resultados para mostrar los mayores a 5 días
+
+-- pero para usarlo con la consulta principal podemos poner la función 'DATEDIFF' como una condicional, ya que la subconsulta acepta seleccionar una sola columna
+
+SELECT r.rental_id
+FROM rental AS r
+WHERE DATEDIFF(r.return_date, r.rental_date) > 5;
                   
--- unir a la consulta principal: REVISAR QUE PONER EN EL 'WHERE'
-                  
-SELECT f.title
-FROM film AS f
-INNER JOIN inventory AS i ON f.film_id = i.film_id
-INNER JOIN rental AS r ON i.inventory_id = r.inventory_id
-WHERE days_rented > (SELECT f.title, r.rental_date, r.return_date, DATEDIFF(r.return_date, r.rental_date) AS days_rented
-						FROM rental AS r
-						HAVING days_rented > 5);
-                  
+-- unir a la consulta principal (Encuentra el título de todas las películas que fueron alquiladas por más de 5 días)
+
+SELECT DISTINCT f.title -- selecciona el título de todas las películas sin que se repita
+FROM film AS f -- de la tabla 'film'
+INNER JOIN inventory AS i USING(film_id) -- uniendo con la tabla 'inventory' usando el 'film_id'
+INNER JOIN rental AS r USING(inventory_id) -- uniendo con la tabla 'rental' usando el 'inventory_id'
+WHERE f.film_id IN (SELECT r.rental_id -- aplicando el filtro de la consulta por el 'film_id' que cumpla con el resultado de la subconsulta
+				  FROM rental AS r -- de la tabla 'rental'
+                  INNER JOIN inventory AS i USING(inventory_id) -- uniendo con la tabla 'inventory' usando el 'inventory_id'
+                  INNER JOIN film AS F USING(film_id) -- uniendo con la tabla 'film' usando el 'film_id'
+				  WHERE DATEDIFF(r.return_date, r.rental_date) > 5 -- usando un filtro que tome los resultados que cumpla con la diferencia entre fecha de renta y fecha de devolución de la película
+                  );
+
 -- 23. Encuentra el nombre y apellido de los actores que no han actuado en ninguna película de la categoría "Horror"
 -- Utiliza una subconsulta para encontrar los actores que han actuado en películas de la categoría "Horror" y luego exclúyelos de la lista de actores
 
