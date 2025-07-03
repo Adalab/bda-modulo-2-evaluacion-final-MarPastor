@@ -225,3 +225,9 @@ ORDER BY f.length; -- ordena por duración
  
 -- 25. Encuentra todos los actores que han actuado juntos en al menos una película
 -- La consulta debe mostrar el nombre y apellido de los actores y el número de películas en las que han actuado juntos
+
+SELECT a.first_name, a.last_name, COUNT(film_id) AS films_acted_together, GROUP_CONCAT(film_id) AS film_ad_group -- selecciona nombre, apellido y el número de películas en las que han actuado juntos, usa GROUP_CONCAT apra verificar el resultado
+FROM actor AS a -- de la tabla 'actor'
+INNER JOIN film_actor AS fa USING(actor_id) -- unida a la tabla 'film_actor'
+GROUP BY a.actor_id -- agrupada por 'actor_id'
+ORDER BY films_acted_together; -- organiza de menor a mayor
