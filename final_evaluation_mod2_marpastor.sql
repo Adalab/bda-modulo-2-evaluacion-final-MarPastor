@@ -157,10 +157,10 @@ WHERE film_id IS NULL; -- verifica si en la columna film_id hay resultados nulos
 
 SELECT c.name, AVG(f.length) AS average_duration -- selecciona la categoría y la duración
 FROM film AS f -- de la tabla 'film'
-INNER JOIN film_category AS fc ON f.film_id = fc.film_id
-INNER JOIN category AS c ON fc.category_id = c.category_id
-GROUP BY c.name
-HAVING average_duration > 120;
+INNER JOIN film_category AS fc ON f.film_id = fc.film_id -- uniendo con la tabla 'film_category' usando el 'film_id'
+INNER JOIN category AS c ON fc.category_id = c.category_id -- uniendo a su vez con la tabla 'category' usando el 'category_id'
+GROUP BY c.name -- agrupa la consulta por el nombre de la categoría
+HAVING average_duration > 120; -- filtra la consulta que muestre los resultados con un promedio de duración superior a 120
 
 --  21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado
 
